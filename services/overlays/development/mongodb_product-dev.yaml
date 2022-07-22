@@ -14,8 +14,7 @@ spec:
     spec:
       containers:
         - name: mongodb-product
-          #image: mongo
-          image: mongo-not-exists          
+          image: mongo
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
               value: mongo

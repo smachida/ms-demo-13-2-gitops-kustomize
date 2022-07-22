@@ -15,8 +15,8 @@ spec:
       containers:
         - name: product
           #image: 172.16.140.11/ms-demo/ms-demo-13-run-on-k8s-product-service
-          image: smachida/ms-demo-13-run-on-k8s-product-service
-          #image: smachida/ms-demo-13-run-on-k8s-product-service-not-exists
+          #image: smachida/ms-demo-13-run-on-k8s-product-service
+          image: smachida/ms-demo-13-run-on-k8s-product-service-not-exists
           #image: smachida/ms-demo-13-run-on-k8s-product-service:v1
           #image: smachida/ms-demo-13-run-on-k8s-product-service:v2
           imagePullPolicy: Always
