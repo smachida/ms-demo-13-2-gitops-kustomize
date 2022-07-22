@@ -11,7 +11,7 @@ if [ $1 = "start" ]; then
   kubectl apply -k services/overlays/development
 
   echo "Waiting for the services to start up..."
-  kubectl wait --timeout=600s --for=condition=ready pod --all
+  kubectl wait --timeout=600s --for=condition=ready pod --all -n ms-demo
 fi
 
 if [ $1 = "stop" ]; then
