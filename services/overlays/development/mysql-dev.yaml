@@ -49,6 +49,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mysql
+  namespace: ms-demo  
 spec:
   selector:
     app: mysql
