@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-recommendation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb-recommendation
+  template:
+    metadata:
+      labels:
+        app: mongodb-recommendation
+    spec:
+      containers:
+        - name: mongodb-recommendation
+          image: mongo
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: mongo
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: mongo
+            - name: MONGO_INITDB_DATABASE
+              value: recommendation-db
+            - name: TZ
+              value: Asia/Tokyo
+          volumeMounts:
+            - name: initdb-mongo-recommendation
+              mountPath: /docker-entrypoint-initdb.d
+          ports:
+            - containerPort: 27017
+          resources:
+            limits:
+              memory: 1024Mi
+      volumes:
+        - name: initdb-mongo-recommendation
+          configMap:
+            name: initdb-mongo-recommendation
+            items:
+              - key: 1-mongo-init.js
+                path: 1-mongo-init.js
+              - key: 2-mongo-init.sh
+                path: 2-mongo-init.sh
+              - key: recommendations.json
+                path: recommendations.json
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-recommendation
+spec:
+  selector:
+    app: mongodb-recommendation
+  ports:
+    - port: 27018
+      targetPort: 27017

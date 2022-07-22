@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: review
+spec:
+  selector:
+    matchLabels:
+      app: review
+  template:
+    metadata:
+      labels:
+        app: review
+    spec:
+      containers:
+        - name: review
+          imagePullPolicy: Always
+          #image: 172.16.140.11/ms-demo/ms-demo-13-run-on-k8s-review-service:v1
+          image: smachida/ms-demo-13-run-on-k8s-review-service:v1
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "docker,prod"
+            - name: SPRING_CLOUD_BOOTSTRAP_ENABLED
+              value: "true"
+          resources:
+            limits:
+              memory: 1024Mi

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-server
+spec:
+  selector:
+    matchLabels:
+      app: auth-server
+  template:
+    metadata:
+      labels:
+        app: auth-server
+    spec:
+      containers:
+        - name: auth-server
+          imagePullPolicy: Always
+          #image: 172.16.140.11/ms-demo/ms-demo-13-run-on-k8s-authorization-server:v1
+          image: smachida/ms-demo-13-run-on-k8s-authorization-server:v1
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "docker,prod"
+          resources:
+            requests:
+              memory: "200Mi"
+            limits:
+              memory: "400Mi"

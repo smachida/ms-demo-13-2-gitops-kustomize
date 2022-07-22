@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product
+spec:
+  selector:
+    matchLabels:
+      app: product
+  template:
+    metadata:
+      labels:
+        app: product
+    spec:
+      containers:
+        - name: product
+          imagePullPolicy: Always
+          #image: 172.16.140.11/ms-demo/ms-demo-13-run-on-k8s-product-service:v1
+          #image: 172.16.140.11/ms-demo/ms-demo-13-run-on-k8s-product-service:v2
+          image: smachida/ms-demo-13-run-on-k8s-product-service:v1
+          #image: smachida/ms-demo-13-run-on-k8s-product-service:v2
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "docker,prod"
+            - name: SPRING_CLOUD_BOOTSTRAP_ENABLED
+              value: "true"
+          resources:
+            requests:
+              memory: "200Mi"
+            limits:
+              memory: "400Mi"

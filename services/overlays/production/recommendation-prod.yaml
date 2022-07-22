@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommendation
+spec:
+  selector:
+    matchLabels:
+      app: recommendation
+  template:
+    metadata:
+      labels:
+        app: recommendation
+    spec:
+      containers:
+        - name: recommendation
+          imagePullPolicy: Always
+          #image: 172.16.140.11/ms-demo/ms-demo-13-run-on-k8s-recommendation-service:v1
+          image: smachida/ms-demo-13-run-on-k8s-recommendation-service:v1
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "docker,prod"
+            - name: SPRING_CLOUD_BOOTSTRAP_ENABLED
+              value: "true"
+          resources:
+            requests:
+              memory: "200Mi"
+            limits:
+              memory: "400Mi"
