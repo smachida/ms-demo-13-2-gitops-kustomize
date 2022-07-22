@@ -1,3 +1,4 @@
+namespace: ms-demo
 resources:
   - auth-server.yaml
   - config-server.yaml

@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: product-composite-v1
-  namespace: ms-demo2  
   labels:
     app: product-composite
     service: product-composite

@@ -1,5 +1,6 @@
 bases:
   - ../../base
+namespace: ms-demo
 resources:
   - mongodb_product-dev.yaml
   - mongodb_recommendation-dev.yaml
