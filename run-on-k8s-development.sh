@@ -18,3 +18,4 @@ if [ $1 = "stop" ]; then
   echo "Deleting microservice-demo services  on k8s development env..."
   kubectl delete -k services/overlays/development
 fi
+
