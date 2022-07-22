@@ -3,7 +3,7 @@ resources:
   - auth-server.yaml
   - config-server.yaml
   - gateway.yaml
-  - product-composite.yaml
+  - product-composite-v1.yaml
   - product.yaml
   - recommendation.yaml
   - review.yaml
